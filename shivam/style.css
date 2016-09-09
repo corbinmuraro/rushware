@@ -1,0 +1,29 @@
+h1.sign-in {
+  text-align: center;
+}
+#cam-container {
+  width: 650px;
+  margin: 0 auto;
+}
+#video {
+  width: 320px;
+  height: 240px;
+}
+#canvas {
+  display: none;
+}
+div.output {
+  width: 320px;
+  height: 240px;
+  background: green;
+  display: inline-block;
+  vertical-align:top;
+  margin-left: 5px;
+}
+#photo {
+  width: 100%;
+  height: 100%;
+}
+#startbutton {
+  margin-top: 5px;
+}
