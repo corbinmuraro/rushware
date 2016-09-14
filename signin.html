@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale = 1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <link href="signin.css" rel="stylesheet">
+  <title>Andrew Lee - Rushee</title>
+</head>
+<body>
+<!-- Different Code Goes Below -->
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to Rush, Sign In</h1>
+    <p class="lead">
+      We use this sign in page to keep track of everyone who has come to rush. Sign in even if you have on a previous day. We can keep track of who you are. After signing in, be sure to get to know the active members and other rushees.
+    </p>
+    <!-- Step 1. Photo -->
+    <div class="row">
+      <h2 class="text-left">1. Your Photo<br /><small>Don't aim for perfection. Make sure we can see your nametag.</small></h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="cam-container">
+          <video id="video">Video stream not available.</video>
+          <canvas id="canvas"></canvas>
+          <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box.">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button id="startbutton" class="btn btn-primary btn-lg btn-block">Take photo</button>
+      </div>
+    </div>
+    <!-- Step 2. Information -->
+    <div class="row">
+      <h2 class="text-left">2. Your Name & Email<br /><small>So we can get a hold of you.</small></h2>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <label for="inputName">Name</label>
+        <input type="text" class="form-control input-lg" id="inputName" placeholder="What do people call you?">
+      </div>
+      <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input type="email" class="form-control input-lg" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <!-- Step 3. Go! -->
+    <div class="row">
+      <button id="submitbutton" class="btn btn-primary col-md-8 col-md-offset-2">Get In There</button>
+    </div>
+  </div>
+
+</div> <!-- /container -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
