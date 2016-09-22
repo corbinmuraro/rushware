@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Signins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Picture</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @signins.each do |signin| %>
+      <tr>
+        <td><%= signin.picture %></td>
+        <td><%= link_to 'Show', signin %></td>
+        <td><%= link_to 'Edit', edit_signin_path(signin) %></td>
+        <td><%= link_to 'Destroy', signin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Signin', new_signin_path %>
