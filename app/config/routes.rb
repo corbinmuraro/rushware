@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :applicants
   get 'signin', to: 'signin#index'
   get 'signin/go'
 
