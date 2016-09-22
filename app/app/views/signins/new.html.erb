@@ -49,8 +49,10 @@
     <!-- Step 2. Information -->
     <div class="row marketing">
       <div class="row">
-        <h2 class="text-xs-left">2. Your Name & Email<br />
-          <small class="text-muted">So we can get a hold of you.</small></h2>
+        <div class="col-sm-12">
+          <h2 class="text-xs-left">2. Your Name & Email<br />
+            <small class="text-muted">So we can get a hold of you.</small></h2>
+        </div>
       </div>
       <%= form_for(@signin) do |f| %>
       <%= f.hidden_field :picture, value: 'REPLACE_ME' %>
