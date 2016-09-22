@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Picture</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -14,9 +13,6 @@
     <% @signins.each do |signin| %>
       <tr>
         <td><%= signin.picture %></td>
-        <td><%= link_to 'Show', signin %></td>
-        <td><%= link_to 'Edit', edit_signin_path(signin) %></td>
-        <td><%= link_to 'Destroy', signin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

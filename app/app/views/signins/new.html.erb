@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <% if @signin.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@signin.errors.count, "error") %> prohibited this signin from being saved:</h2>
@@ -51,6 +53,7 @@
           <small class="text-muted">So we can get a hold of you.</small></h2>
       </div>
       <%= form_for(@signin) do |f| %>
+      <%= f.hidden_field :picture, value: 'REPLACE_ME' %>
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
@@ -78,7 +81,7 @@
           <div class="form-group">
             <div class="input-group input-group-lg">
               <%= label :applicant, :email, class: 'input-group-addon' %>
-              <%= text_field :applicant, :email, class: 'form-control',
+              <%= email_field :applicant, :email, class: 'form-control',
                 placeholder: 'Where we send your important emails?' %>
             </div>
           </div>

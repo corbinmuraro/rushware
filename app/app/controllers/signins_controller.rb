@@ -1,15 +1,8 @@
 class SigninsController < ApplicationController
-  before_action :set_signin, only: [:show, :edit, :update, :destroy]
-
   # GET /signins
   # GET /signins.json
   def index
     @signins = Signin.all
-  end
-
-  # GET /signins/1
-  # GET /signins/1.json
-  def show
   end
 
   # GET /signins/new
@@ -17,18 +10,25 @@ class SigninsController < ApplicationController
     @signin = Signin.new
   end
 
-  # GET /signins/1/edit
-  def edit
-  end
-
   # POST /signins
   # POST /signins.json
   def create
+    applicant_params[:email].downcase!
+
+    # Searches for Applicant using email provided. If Applicant with that email
+    # does not already exist it creates it, in both cases it sets @applicant.
+    @applicant = Applicant.find_or_create_by!(
+    email: applicant_params[:email]) do |applicant|
+      applicant.first_name = applicant_params[:first_name]
+      applicant.last_name = applicant_params[:last_name]
+    end
+
     @signin = Signin.new(signin_params)
+    @signin.applicant_id = @applicant.id
 
     respond_to do |format|
       if @signin.save
-        format.html { redirect_to @signin, notice: 'Signin was successfully created.' }
+        format.html { redirect_to new_signin_url, notice: 'Signin was successfully created.' }
         format.json { render :show, status: :created, location: @signin }
       else
         format.html { render :new }
@@ -37,37 +37,12 @@ class SigninsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /signins/1
-  # PATCH/PUT /signins/1.json
-  def update
-    respond_to do |format|
-      if @signin.update(signin_params)
-        format.html { redirect_to @signin, notice: 'Signin was successfully updated.' }
-        format.json { render :show, status: :ok, location: @signin }
-      else
-        format.html { render :edit }
-        format.json { render json: @signin.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /signins/1
-  # DELETE /signins/1.json
-  def destroy
-    @signin.destroy
-    respond_to do |format|
-      format.html { redirect_to signins_url, notice: 'Signin was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_signin
-      @signin = Signin.find(params[:id])
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def applicant_params
+      params.require(:applicant).permit(:first_name, :last_name, :email)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def signin_params
       params.require(:signin).permit(:picture)
     end
