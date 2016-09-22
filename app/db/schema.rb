@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922065740) do
+ActiveRecord::Schema.define(version: 20160922073839) do
 
   create_table "applicants", force: :cascade do |t|
     t.string   "first_name"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20160922065740) do
 
   create_table "signins", force: :cascade do |t|
     t.string   "picture"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "applicant_id"
+    t.index ["applicant_id"], name: "index_signins_on_applicant_id"
   end
 
 end
