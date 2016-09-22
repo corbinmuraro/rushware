@@ -1,5 +1,100 @@
-<h1>New Signin</h1>
+<% if @signin.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@signin.errors.count, "error") %> prohibited this signin from being saved:</h2>
 
-<%= render 'form', signin: @signin %>
+    <ul>
+    <% @signin.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<%= link_to 'Back', signins_path %>
+<div class="container">
+  <div class="jumbotron">
+    <%= image_tag "signin/sep.png" %>
+    <h1 class="display-4">Welcome to Rush, Sign In</h1>
+    <p class="lead">
+      We use this sign in page to keep track of everyone who has come to rush. Sign in even if you have on a previous day. We can keep track of who you are. After signing in, be sure to get to know the active members and other rushees.
+    </p>
+    <!-- Step 1. Photo -->
+    <div class="row marketing">
+      <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-xs-left">1. Your Photo<br />
+            <small class="text-muted">Don't aim for perfection.</small></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="cam-container">
+            <video id="video">Video stream not available.</video>
+            <canvas id="canvas"></canvas>
+            <div class="output">
+              <img id="photo" alt="The screen capture will appear in this box.">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <button id="startbutton" class="btn btn-primary btn-lg btn-block">Take photo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2. Information -->
+    <div class="row marketing">
+      <div class="row">
+        <h2 class="text-xs-left">2. Your Name & Email<br />
+          <small class="text-muted">So we can get a hold of you.</small></h2>
+      </div>
+      <%= form_for(@signin) do |f| %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <%= label :applicant, :first_name, class: 'input-group-addon' %>
+              <%= text_field :applicant, :first_name, class: 'form-control',
+                placeholder: 'What do people call you?' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <%= label :applicant, :last_name, class: 'input-group-addon' %>
+              <%= text_field :applicant, :last_name, class: 'form-control',
+                placeholder: 'What do your friends call your parents after Mr. Or Ms.?' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <%= label :applicant, :email, class: 'input-group-addon' %>
+              <%= text_field :applicant, :email, class: 'form-control',
+                placeholder: 'Where we send your important emails?' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 3. Go! -->
+      <div class="row">
+        <div class="col-xs-12">
+            <%= f.submit "Sign Me In!", class: 'btn btn-success btn-lg btn-block' %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</div> <!-- /container -->
+<%= stylesheet_link_tag    'signins', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'signins', 'data-turbolinks-track': 'reload' %>
