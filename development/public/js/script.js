@@ -1,70 +1,20 @@
-// from https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos
+// TODO: Integrate input box for images with backend
+
 (function() {
-  var width = 320;
-  var height = 0; // computer based on stream
-  var streaming = false;
   var hasTakenPhoto = false;
 
   // HTML DOM elents
-  var video = null;
-  var canvas = null;
-  var photo = null;
-  var startbutton = null;
+  var camerabutton = null;
   var submitbutton = null;
 
   var formSubmitURL = "/yo";
 
   function startup() {
-    video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
-    photo = document.getElementById('photo');
-    startbutton = document.getElementById('startbutton');
+ 
+    camerabutton = document.getElementById('camerabutton');
     submitbutton = document.getElementById('submitbutton');
 
-    // get appropriate getMedia function based on browser
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
-
-    navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        }
-        else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
-        }
-        video.play();
-      },
-      function(err) {
-        console.log("An error occured! ", err);
-      }
-    );
-
-    video.addEventListener('canplay', function(ev) {
-      if (!streaming) {
-        // proportionally set height based on stream height
-        height = video.videoHeight / (video.videoWidth/width);
-
-        // firefox bug: can't read height from video, so set height to 4:3
-        if (isNaN(height)) {
-          height = width / (4/3);
-        }
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
-
-    startbutton.addEventListener('click', function(ev){
+    camerabutton.addEventListener('click', function(ev){
       takepicture();
       ev.preventDefault();
     }, false);
@@ -91,17 +41,13 @@
   // it into a PNG format data URL.
   function takepicture() {
     var context = canvas.getContext('2d');
-    if (width && height) {
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(video, 0, 0, width, height);
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(video, 0, 0, width, height);
 
-      var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
-      hasTakenPhoto = true;
-    } else {
-      clearphoto();
-    }
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+    hasTakenPhoto = true;
   }
 
   function submit() {

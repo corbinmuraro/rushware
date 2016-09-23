@@ -26,25 +26,9 @@
     <div class="row marketing">
       <div class="row">
         <div class="col-sm-12">
-            <h2 class="text-xs-left">1. Your Photo<br />
-            <small class="text-muted">Don't aim for perfection. Make sure we can see your nametag.</small></h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div id="cam-container">
-            <video id="video">Video stream not available.</video>
-            <canvas id="canvas"></canvas>
-            <div class="output">
-              <img id="photo" alt="The screen capture will appear in this box.">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <button id="startbutton" class="btn btn-primary btn-lg btn-block">Take photo</button>
+          <label id="camerabutton" class="btn btn-primary btn-lg btn-block" for="capture">
+            Take photo: <input type="file" accept="image/*" id="capture" capture="camera" style="display:none;">
+          </label>
         </div>
       </div>
     </div>
